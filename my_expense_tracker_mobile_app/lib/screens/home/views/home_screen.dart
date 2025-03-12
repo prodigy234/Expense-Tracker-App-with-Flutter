@@ -4,16 +4,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_expense_tracker_mobile_app/screens/home/views/main_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  var widgetList = [
+    MainScreen(),
+    StatsScreen(),
+  ]
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
         child: BottomNavigationBar(
+          onTap: (value) {
+            print(value);
+          },
           backgroundColor: Colors.white,
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -47,7 +62,7 @@ class HomeScreen extends StatelessWidget {
           child: const Icon(CupertinoIcons.add),
         ),
       ),
-      body: MainScreen(),
+      body: const MainScreen(),
     );
   }
 }
